@@ -26,7 +26,6 @@ if ( isset( $_REQUEST['barcode'] ) ) {
     if ($result->num_rows > 0) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
-    //            echo '<div class="item">Name: ' . $row["item_name"] . '<br> Barcode ' . $row["barcode"] . '<br><img src="' . $row["image"] . '" height="100px"></div>';
             $json_user = json_encode($row);
             echo $json_user;
         }
