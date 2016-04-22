@@ -1,0 +1,21 @@
+$orange: #FF530D;
+$lightblue: #BDD4DE;
+$darkblue: #3F5765;
+$offwhite: #EFEFEF;
+$green: #00A388;
+$mobile: new-breakpoint(max-width 500px 4);
+
+@mixin heightFix{
+
+    &:after {
+
+        content: " ";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+
+    }
+
+}

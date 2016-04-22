@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=1, minimum-scale=1.0, maximum-scale=1.0">
+    <!-- Chrome, Firefox OS, Opera and Vivaldi -->
+    <meta name="theme-color" content="#FF530D">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#FF530D">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#FF530D">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body ng-app="app" ng-controller="MainController as main" ng-cloak>
+<div class="checkout-view animated">
+    <div>
+        <h2>Thanks for your Purchase!!</h2>
+        <section ng-repeat="item in main.ordered">
+            <span>{{item.title}} x {{item.quantity}}</span><br>
+        </section>
+        <p>Your total is <strong>{{main.ordered | totalSumPriceQty:'quantity':'price' | currency}}</strong></p>
+
+    </div>
+</div>
+<div class="container">
+
+    <div class="modal" tabindex="-1" ng-init="item.total = {}">
+        <div class="modal-wrap">
+            <section ng-repeat="item in main.ordered">
+                <div class="hold">
+                    <strong>{{item.title}}</strong>
+                    <p ng-model="item.price">{{item.price | currency}}</p>
+                    <input class="qty" type="number" step="1" min="0" string-to-number ng-model="item.quantity"/>
+                </div>
+                <div class="wrapper">
+                    <button class="mini-btn" ng-click="main.remove(item);  main.increment(item)">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <!--<div class="total">-->
+                    <!--<p><span>total: </span>{{item.price * item.quantity | currency }}</p>-->
+                <!--</div>-->
+            </section>
+            <button class="mini-btn close">close</button>
+            <p><span>Total: </span><span>{{main.ordered | totalSumPriceQty:'quantity':'price' | currency}}</span></p>
+        </div>
+    </div>
+
+    <!--checkout container begin-->
+    <div class="container-fixed">
+        <input type="checkbox"  class="checkout-valid" ng-checked="main.checkboxes.state">
+        <button class="large-btn checkout-init" ng-show="!main.ordered.length < 1">
+            <i class="fa fa-truck" aria-hidden="true"></i> Checkout
+        </button>
+        <span ng-hide="main.ordered.length < 1" class="badge">{{main.ordered | sumOfValue:'quantity'}}</span>
+        <button class="large-btn modal-trigger" ng-disabled="main.ordered.length < 1">View Cart</button>
+    </div>
+    <!--checkout container end-->
+
+    <!--search container begin-->
+    <div class="container-fluid animated flipInX">
+        <div class="halves">
+            <label for="select-choice1" class="label select-1">
+                <select id="select-choice1" class="select" ng-model="main.order" ng-options="order as order.title for order in main.orders"></select>
+            </label>
+        </div>
+        <div class="halves">
+            <form role="search">
+                <input type="search" placeholder="Enter Search" ng-model="main.searchInput" />
+                <button type="submit">
+                    <img src="assets/search-icon.png" alt="Search Icon">
+                </button>
+            </form>
+        </div>
+    </div>
+    <!--search container end-->
+
+    <!--content container begin-->
+    <div class="container animated bounceInUp">
+        <h1>{{main.title}}</h1>
+        <section class="single-item" ng-click="main.addThis();"
+            ng-repeat="item in main.menu | filter:main.searchInput | orderBy:main.order.key:main.order.reverse" style="background-image: url({{item.image}})">
+            <div class="wrap details">
+                <strong>{{item.title}} </strong><span class="fa fa-gratipay" ng-if="item.favorite === 'true' "></span>
+                <p>{{item.description}}</p>
+                <span ng-model="item.price" string-to-number>{{item.price | currency}}</span>
+                <input class="qty" type="number" step="1" min="0" string-to-number ng-model="item.quantity"/>
+                <p class="">Total: {{item.price * item.quantity | currency }}</p>
+                <button  class="large-btn"
+                         ng-disabled="item.quantity < 1"
+                         ng-class="{'button': !isActive, 'button active': isActive}"
+                         ng-init="isActive = false"
+                         ng-click="main.addToOrder(item); isActive = !isActive">add</button>
+            </div>
+        </section>
+    </div>
+    <!--content container end-->
+
+    <div class="house-fav animated flipInX">
+        <div class="push">
+            <span class="fa fa-gratipay"></span>
+            <span>House Favorites</span>
+        </div>
+    </div>
+</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="min/app-min.js"></script>
+    <script src="min/main.ctrl-min.js"></script>
+</body>
+
+</html>

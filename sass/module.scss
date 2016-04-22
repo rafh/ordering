@@ -1,0 +1,254 @@
+.clear{
+
+    clear: both;
+    content: '';
+    display: block;
+
+}
+
+.halves{
+
+    @include span-columns(6);
+
+}
+
+.btn{
+
+    border-radius: 4px;
+    border: none;
+    background: $orange;
+    color: white;
+    display: block;
+    margin-top: 10px;
+
+}
+
+.mini-btn{
+
+    @extend .btn;
+    padding: 4px 7px;
+    margin: auto;
+
+}
+
+.large-btn{
+
+    @extend .btn;
+    padding: 8px 14px;
+    @include transition( all ease 0.5s );
+
+}
+
+form{
+
+    position: relative;
+
+    input[type=search] {
+
+        @include appearance(none);
+        @include transition(border-color);
+        background-color: white;
+        border: 1px solid lightgrey;
+        box-sizing: border-box;
+        display: block;
+        font-size: 1em;
+        margin: 0;
+        padding: 10px;
+        position: relative;
+        width: 100%;
+        border-radius: 4px;
+
+    }
+
+    button[type=submit] {
+
+        @include position(absolute, 0em 0em 0em null);
+        outline: none;
+        padding: 5px 13px;
+        background: $orange;
+        border: none;
+        border-bottom-right-radius: 4px;
+        border-top-right-radius: 4px;
+
+        img {
+            height: 12px;
+            opacity: 0.7;
+        }
+
+    }
+
+}
+
+select {
+
+    position: relative;
+    width: 100%;
+    font-size: 1em;
+    padding: 10px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 $offwhite, 0 -1px white inset;
+    -moz-box-shadow: 0 3px 0 $offwhite, 0 -1px white inset;
+    box-shadow: 0 3px 0 $offwhite, 0 -1px white inset;
+    background: white;
+    color:#888;
+    border:none;
+    outline:none;
+    display: inline-block;
+    @include appearance(none);
+    cursor:pointer;
+
+}
+
+.select-1 {
+
+    position:relative;
+
+    &:after{
+
+        content:'<>';
+        font:11px "Consolas", monospace;
+        color: $orange;
+        @include transform(rotate(90deg));
+        right:8px; top:2px;
+        padding:0 0 2px;
+        border-bottom:1px solid #ddd;
+        position:absolute;
+        pointer-events:none;
+
+    }
+
+    &:before{
+
+        content:'';
+        right:6px;
+        top:0;
+        width:20px;
+        height:20px;
+        background: white;
+        position:absolute;
+        pointer-events:none;
+        display:block;
+
+    }
+}
+
+.large-btn[disabled] {
+
+    // styles when the element is disabled
+    background-color: #ddd !important;
+
+}
+
+
+/*-------------------------------------------
+	Modals
+-------------------------------------------*/
+
+.modal-visible{
+
+    opacity: 1 !important;
+    visibility: visible;
+    z-index: 100 !important;
+    @include transform-style(preserve-3d);
+    z-index: -1;
+
+}
+
+.modal-state {
+
+    display: none;
+
+}
+
+.modal {
+
+    opacity: 0;
+    @include transition(all ease 0.5s);
+    background: rgba(0, 0, 0, 0.71);
+    @include position(absolute, 0);
+    @include transform-style(preserve-3d);
+    position: absolute;
+    z-index: -10;
+
+    .modal-state {
+
+        position: absolute;
+        opacity: 0;
+
+    }
+
+    .modal-wrap{
+
+        position: relative;
+        width: 60%;
+        z-index: 100;
+        max-width: 400px;
+        background: $offwhite;
+        padding: 18px 32px;
+        border-radius: 4px;
+        @include transform-style(preserve-3d);
+
+    }
+
+    section{
+
+        @include heightFix();
+        border-bottom: 1px solid $orange;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        margin-top: 10px;
+        @include outer-container();
+
+        .hold{
+
+            @include span-columns( 9 of 12 );
+
+            input{
+
+                width: 30px;
+
+            }
+
+        }
+
+        .wrapper{
+
+            @include span-columns( 2 of 12 );
+
+            i{
+
+                font-size: 2em;
+
+            }
+
+        }
+
+        .total{
+
+            @include span-columns( 12 of 12 )
+
+        }
+
+    }
+
+    .mini-btn{
+
+        padding: 7px;
+        position: relative;
+        right: -70%;
+
+    }
+
+    .close{
+
+        right: 0;
+        margin: 0;
+
+    }
+
+
+
+}
