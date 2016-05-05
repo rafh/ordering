@@ -1,0 +1,22 @@
+/*-------------------------------------------
+	States
+-------------------------------------------*/
+
+.is-visible{
+
+    opacity: 1;
+    visibility: visible;
+
+}
+
+.not-visible{
+
+    opacity: 0;
+
+}
+
+.no-scroll{
+
+    overflow: hidden;
+
+}

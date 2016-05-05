@@ -1,4 +1,6 @@
-
+/*-------------------------------------------
+	Bases Styles Views
+-------------------------------------------*/
 body{
 
     background-color: $offwhite;
@@ -236,40 +238,6 @@ html{
 
 }
 
-.house-fav{
-
-    margin: 10px;
-    @include span-columns(12);
-
-}
-
-.badge{
-
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 75px;
-    background: $orange;
-    border-radius: 39%;
-    height: 20px;
-    width: 20px;
-    text-align: center;
-    color: white;
-
-
- }
-
-button{
-
-    cursor: pointer;
-
-    &[disabled]{
-        cursor: default;
-    }
-
-
-}
-
 .push{
 
     width: 50%;
@@ -326,22 +294,5 @@ button{
 
 }
 
-.is-visible{
 
-    opacity: 1;
-    visibility: visible;
-
-}
-
-.not-visible{
-
-    opacity: 0;
-
-}
-
-.no-scroll{
-
-    overflow: hidden;
-
-}
 

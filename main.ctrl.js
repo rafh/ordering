@@ -205,7 +205,6 @@ $(document).ready(function () {
 
     //modal functionality
     $('body').on('click', '.modal-trigger', function(e){
-         console.log('fif');
         var $windowHeight = $(document).height();
 
         e.preventDefault();

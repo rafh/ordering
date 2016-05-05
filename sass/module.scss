@@ -1,3 +1,8 @@
+
+/*-------------------------------------------
+	Modal Classes
+-------------------------------------------*/
+
 .clear{
 
     clear: both;
@@ -152,9 +157,43 @@ select {
 
 }
 
+.house-fav{
+
+    margin: 10px;
+    @include span-columns(12);
+
+}
+
+.badge{
+
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 75px;
+    background: $orange;
+    border-radius: 39%;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    color: white;
+
+
+}
+
+button{
+
+    cursor: pointer;
+
+    &[disabled]{
+        cursor: default;
+    }
+
+
+}
+
 
 /*-------------------------------------------
-	Modals
+	Modal
 -------------------------------------------*/
 
 .modal-state {
