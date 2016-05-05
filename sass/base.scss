@@ -26,6 +26,12 @@ html{
 
 }
 
+#menuOption {
+
+    margin-bottom: 10px;
+
+}
+
 .container-fluid{
 
     margin: 10px 15px;
@@ -103,7 +109,15 @@ html{
 
     }
 
-    @include outer-container;
+    .filter{
+
+        padding: 20px 30px 0;
+        clear: both;
+        margin: 0;
+
+    }
+
+    //@include outer-container;
 
     @media screen and (min-width: 800px) {
 
@@ -112,11 +126,18 @@ html{
     }
 
 
+    .wrapped{
+
+        @include span-columns( 12 );
+        @include omega;
+
+    }
     .single-item{
 
         background-color: $lightblue;
         background-size: cover;
         background-position: 50% 0;
+        @include omega;
         @include span-columns( 12 of 12 );
         @include transition( all ease 0.5s );
 
@@ -138,23 +159,32 @@ html{
 
         }
 
+        .btn-hold{
+
+            @include display(flex);
+
+                button{
+
+                    margin-right: 20px;
+
+                }
+            }
+
+
         @media screen and (min-width: 500px) {
 
-            @include shift( 2 of 12 );
+            //@include shift( 2 of 12 );
             @include span-columns( 6 of 12 );
-            margin-right: 0;
-            margin-left: 1%;
-            margin-bottom: 1%;
-            box-shadow: rgba(51, 51, 51, 0.43) 1px 0 1px;
+            @include omega;
 
         }
 
         @media screen and (min-width: 800px) {
 
-            @include span-columns( 6 of 12 );
-            margin-right: 0;
-            margin-left: 1%;
-            margin-bottom: 1%;
+            //@include span-columns( 6 of 12 );
+            //margin-right: 0;
+            //margin-left: 1%;
+            //margin-bottom: 1%;
 
         }
 
@@ -163,8 +193,15 @@ html{
     .details{
 
         padding: 20px;
+        height: 100%;
         background-color: rgba( 239, 239, 239, .67 );
-        @include transition( all ease 0.5s );
+        @include transition( all ease 0.8s );
+
+        &:hover{
+
+            background-color: rgba( 239, 239, 239, .4 );
+
+        }
 
         .qty{
 
@@ -193,7 +230,7 @@ html{
 
         background-size: cover;
         background-position: 50% 0;
-        min-height: 239px;
+        //min-height: 239px;
 
     }
 
@@ -252,6 +289,7 @@ button{
     z-index: 100000;
     clear: both;
     @include display(flex);
+    @include flex-direction(column);
     @include transform-style( preserve-3d);
 
     div{
@@ -277,6 +315,14 @@ button{
         }
 
     }
+
+    .large-btn{
+
+        margin: 23px;
+        width: 130px;
+
+    }
+
 
 }
 

@@ -4,11 +4,65 @@
 
 angular.module('app').controller('MainController', ['$scope', '$http', function ($scope, $http) {
         var vm = this;
-        var menuURL = 'http://in-info-web4.informatics.iupui.edu/~roheard/menu-ordering/connect.php';
-        $http.get(menuURL)
-            .success(function (data) {
-                vm.menu = data;
-            });
+
+
+    vm.places = [
+        {
+            id: 0, name: 'Default'
+        },
+        {
+            id: 1, name: 'Riverwalk Eatery'
+        },
+        {
+            id: 2, name: 'Pancakes and Such'
+        }
+    ];
+
+    vm.place = vm.places[1];
+    vm.update = function(item) {
+
+        vm.obj = {
+            value1: 'default'
+        };
+
+        if(vm.item.id === 1 ){
+
+            vm.title = 'Riverwalk Eatery';
+
+            var menuUrl = 'http://in-info-web4.informatics.iupui.edu/~roheard/menu-ordering/connect.php';
+
+            $http.get(menuUrl)
+                .success(function (data) {
+                    vm.menu = data;
+                })
+                .error(function () {
+                    console.log('error')
+                })
+
+        }else if (vm.item.id === 2 ) {
+
+            vm.title = 'Pancakes and Such';
+
+            var menuUrl = 'http://in-info-web4.informatics.iupui.edu/~roheard/menu-ordering/connectTwo.php';
+
+            $http.get(menuUrl)
+                .success(function (data) {
+                    vm.menu = data;
+                })
+                .error(function () {
+                    console.log('error')
+                })
+
+        }else{
+
+            vm.title = 'What are we eating today?';
+            vm.menu = [];
+
+        }
+
+    };
+
+
 
         vm.orders = [
             {
@@ -34,12 +88,17 @@ angular.module('app').controller('MainController', ['$scope', '$http', function 
                 title: 'Title Descending',
                 key: 'title',
                 reverse: true
+            },
+            {
+                id: 4,
+                title: 'Price',
+                key: 'price',
+                reverse: false
             }
         ];
 
         vm.order = vm.orders[0];
-
-        vm.title = 'Menu';
+        vm.title = 'What are we eating today?';
         vm.searchInput = '';
         vm.ordered = [];
         vm.Total = 0;
@@ -62,31 +121,31 @@ angular.module('app').controller('MainController', ['$scope', '$http', function 
             var index = vm.ordered.indexOf(item);
             vm.ordered.splice(index, 1);
             item.quantity = '0';
+            $('body').removeClass('no-scroll');
 
             //if ordered array is empty close modal
             if(vm.ordered.length === 0){
                 $('.modal').removeClass('modal-visible');
+                $('body').removeClass('no-scroll');
             }
         };
 
         //add item to cart
         vm.addToOrder = function (item) {
-
+            item.quantity ++;
             //accesses object in array
-            if (vm.ordered.indexOf(item) > -1) { 
-                //nothing for now
+            if (vm.ordered.indexOf(item) > -1) {
+                // item.quantity = 1;
+
             } else {
 
                 vm.ordered.push(item);
-                console.log(vm.ordered);
 
             }
 
         };
 
         vm.toggle = false;
-
-
         
 
 }]).directive('stringToNumber', function() {
@@ -127,21 +186,30 @@ angular.module('app').controller('MainController', ['$scope', '$http', function 
 
 $(document).ready(function () {
 
+    //close checkout screen
+    $('.exit').click(function () {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        $('.checkout-view').removeClass('is-visible');
+        $('body').removeClass('no-scroll');
+        // $('.modal').remove();
+    });
+
     //checkout screen
     $('.checkout-init').click(function () {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         $('.checkout-view').addClass('is-visible');
         $('body').addClass('no-scroll');
-        $('.modal').remove();
+        // $('.modal').remove();
     });
 
 
     //modal functionality
-    $('.modal-trigger').click(function(e){
-
+    $('body').on('click', '.modal-trigger', function(e){
+         console.log('fif');
         var $windowHeight = $(document).height();
 
         e.preventDefault();
+        $('body').addClass('no-scroll');
         $('.modal').toggleClass('modal-visible');
         $('.modal').fadeIn();
 
@@ -161,6 +229,10 @@ $(document).ready(function () {
 
         });
 
+    });
+
+    $('.mini-btn').on('click', function(){
+        $('body').removeClass('no-scroll');
     });
 
     $('.close').on('click', function () {
@@ -203,32 +275,24 @@ $(document).ready(function () {
     //sets the height of div containing menu item details equal to its parent
     $(window).on('load resize', function () {
 
-        setTimeout(function () {
-            equalheight('.container .single-item');
-
-            $('.details').each(function() {
-                var calcH = $(this).parent().outerHeight( true );
-                $(this).css('min-height', calcH);
-
-            });
-            
-        }, 0);
+            equalheight('.single-item');
 
     });
 
     $("select").change(function(){
 
+        $('.wrapped').addClass('fadeInLeft');
         setTimeout(function () {
-            equalheight('.container .single-item');
-
-            $('.details').each(function() {
-                var calcH = $(this).parent().outerHeight( true );
-                $(this).css('min-height', calcH);
-
-            });
-
+            equalheight('.single-item');
         }, 200);
 
+        setTimeout(function () {
+            $('.wrapped').removeClass('fadeInLeft');
+        }, 1000)
+    });
+
+    $('.search').on('input', function() {
+        equalheight('.single-item');
     });
 
 

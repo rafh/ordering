@@ -10,6 +10,16 @@
 
     @include span-columns(6);
 
+    &:first-child{
+
+        @media screen and (max-width: 500px){
+
+            @include span-columns(12);
+
+        }
+
+    }
+
 }
 
 .btn{
@@ -147,16 +157,6 @@ select {
 	Modals
 -------------------------------------------*/
 
-.modal-visible{
-
-    opacity: 1 !important;
-    visibility: visible;
-    z-index: 100 !important;
-    @include transform-style(preserve-3d);
-    z-index: -1;
-
-}
-
 .modal-state {
 
     display: none;
@@ -250,5 +250,14 @@ select {
     }
 
 
+
+}
+
+.modal-visible{
+
+    opacity: 1;
+    visibility: visible;
+    z-index: 600;
+    @include transform-style(preserve-3d);
 
 }
