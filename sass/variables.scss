@@ -20,6 +20,18 @@ $mobile: new-breakpoint(max-width 500px 4);
 
 }
 
-@include font-face("lobster", "/fonts/lobster-regular-webfont");
+//@include font-face("lobster", "../fonts/lobster-regular-webfont");
+
+@font-face {
+
+    font-family: 'lobster';
+    src: url('../fonts/lobster-regular-webfont.eot'); /* IE9 */
+    src: url('../fonts/lobster-regular-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/lobster-regular-webfont.woff2') format('woff2'), /*  Modern Browsers */
+    url('../fonts/lobster-regular-webfont.woff') format('woff'), /*  Modern Browsers */
+    url('../fonts/lobster-regular-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/lobster-regular-webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+
+}
 
 

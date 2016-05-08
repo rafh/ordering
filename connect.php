@@ -4,9 +4,9 @@ header("Access-Control-Allow-Origin: *");
 ////////////////////// mysqli method /////////////////////
 
 $dbhost = 'localhost';
-$dbuser = 'roheard';
-$dbpwd  = 'roheard';
-$dbname = 'roheard_db';
+$dbuser = 'rafaelh1_app';
+$dbpwd  = 'Jayden1708!!#';
+$dbname = 'rafaelh1_db';
 
 $conn = mysqli_connect($dbhost, $dbuser, $dbpwd, $dbname);
 

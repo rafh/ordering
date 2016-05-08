@@ -1,0 +1,31 @@
+{
+  "name": "menu-ordering",
+  "version": "1.0.0",
+  "description": "web application for ordering",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafh/ordering-app.git"
+  },
+  "keywords": [
+    "ordering"
+  ],
+  "author": "Rafael Heard <rafael.heard@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rafh/ordering-app/issues"
+  },
+  "homepage": "https://github.com/rafh/ordering-app#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-notify": "^0.4.5"
+  }
+}
